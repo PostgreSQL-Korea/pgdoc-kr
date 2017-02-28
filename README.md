@@ -1,3 +1,4 @@
-# My Awesome Book
+# 머릿말
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+페이스북 PostgreSQL Korea 사용자 모임에서 첫 공동 온라인 작업을 진행합니다.
+
