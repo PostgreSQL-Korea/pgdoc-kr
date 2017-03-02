@@ -31,24 +31,30 @@ WAL 물리적 스트리밍 복제는 다음과 같은 한계점을 가진다.
    보조 서버를 pg\_basebackup 명령으로 구축하려면, 먼저 주 서버의 postgresql.conf 파일과 pg\_hba.conf파일에 다음 설정을 해야 한다. 또한 여기서 구축하는 방법에서는 복제 슬롯을 이용해서 주 서버가 보관해야할 아직 전송하지 않은 WAL 를 모두 보관하는 방식을 택했다.
 
    postgresql.conf 설정값 변경 사항  
-   `wal_level = replica #(또는 logical) (이 값을 바꾼다면 주 서버를 재실행해야 한다.)      
-   max_wal_senders = 5 #(보조 서버 수보다 2~3 여유를 더 두는 것이 좋다, 이 설정도 서버 재실행이 필요함)      
-   max_replication_slots = 5 #(max_wal_senders 값과 같게, 이 설정도 서버 재실행이 필요함)      
-   track_commit_timestamp = on      
-   hot_standby = on #(복사될 postgresql.conf 파일 수정 최소화를 위해 미리 지정해 둔다)      
-   max_standby_streaming_delay = -1 #(자료 차이가 나도 끝까지 포기하지 않는다)      
-   hot_standby_feedback = on    
-      `  
+   `wal_level = replica #(또는 logical) (이 값을 바꾼다면 주 서버를 재실행해야 한다.)   
+       
+   max_wal_senders = 5 #(보조 서버 수보다 2~3 여유를 더 두는 것이 좋다, 이 설정도 서버 재실행이 필요함)  
+        
+   max_replication_slots = 5 #(max_wal_senders 값과 같게, 이 설정도 서버 재실행이 필요함)   
+       
+   track_commit_timestamp = on   
+       
+   hot_standby = on #(복사될 postgresql.conf 파일 수정 최소화를 위해 미리 지정해 둔다)    
+      
+   max_standby_streaming_delay = -1 #(자료 차이가 나도 끝까지 포기하지 않는다)  
+        
+   hot_standby_feedback = on  
+   `  
    pg\_hba.conf 설정 추가 사항  
-   `host replication postgres 192.168.0.10/32 trust #(보조서버 IP와 인증 방법 지정)  
-       `
+   `host replication postgres 192.168.0.10/32 trust #(보조서버 IP와 인증 방법 지정)`
 
    대부분의 설정이 주 서버 재시작을 해야 반영되는 것이기 때문에, 이런 WAL 스트리밍 복제 기능을 염두해 두고 서버를 구축한다면, 미리 설정을 바꾸어 놓는 것이 좋을 것이다.  
    주 서버 재시작
 
 2. 보조 서버 구축
 
-3. 보조 서버 실행 
+3. 보조 서버 실행
+
 4. 테스트
 
 ### WAL 논리적 디코딩
