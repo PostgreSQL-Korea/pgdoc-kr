@@ -70,3 +70,8 @@ Facebook PostgreSQK Korea 사용자 그룹에 참여한 분들에게 물었다.
 > MPP 하기 좋은 데이터베이스?! Parallel 은 그럭저럭! 파티션이 쓰렉!? ㅠㅠ    
 > DB 엔진 5위에 비해서 국내 점유율 저조!! 글로벌 수준으로 올라온다면 그만큼 선점효과!? 5년안에 힘듬?! ㅠㅠ    
 > 아카데믹 및 pg 베이스 솔루션들?! 딱히 성공한것도 없음?! ㅠㅠ - 이형채
+
+&#x200b;
+
+> 저는 PostgreSQL: The world's most advanced open source database 
+포스트그레스큐엘:세계에서 가장 앞서나가는 오픈 소스 데이터베이스라는 말이 멋있어 보여서... - 세벌
