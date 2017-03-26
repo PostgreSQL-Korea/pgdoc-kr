@@ -7,3 +7,4 @@
 * [PostgreSQL 9.6 설치](postgresql-install.md)
 * [데이터베이스 복제](Replication.md)
 * [XML](xml.md)
+* [Cloud TEST](cloud_test.md)
