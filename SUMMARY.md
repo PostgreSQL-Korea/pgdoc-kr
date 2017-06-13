@@ -8,3 +8,5 @@
 * [데이터베이스 복제](Replication.md)
 * [XML](xml.md)
 * [Cloud TEST](cloud_test.md)
+* [Cloud와 PostgreSQL](cloudc640-postgresql.md)
+
