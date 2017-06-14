@@ -142,7 +142,8 @@ aws-020.png
 
 PostgreSQL 설치를 위해 추가한 50GB의 디스크를 마운트 합니다. 
 
-'''
+
+''''
 디스크를 포맷해줍니다. 
 mkfs.ext4 /dev/sdb
 
@@ -153,7 +154,7 @@ sudo mount /dev/sdb /db
 PostgreSQL 설치를 위해 디렉토리를 생성합니다. 
 sudo mkdir /db/pgsql
 cd /db/pgsql
-'''
+''''
 
 이제 이곳에 최신 버전을 다운로드 받고 설치하면 됩니다. 
 
