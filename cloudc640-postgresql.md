@@ -158,9 +158,33 @@ cd /db/pgsql
 
 이제 이곳에 최신 버전을 다운로드 받고 설치하면 됩니다. 
 
+
+---
+
 1. AWS MarketPlace를 이용한 설치
 
+마켓플레이스는 고객이 AWS에서 실행 중인 소프트웨어와 서비스를 검색, 구입한 후 즉시 사용할 수 있도록 지원하는 온라인 소프트웨어 상점입니다.
 [https://aws.amazon.com/marketplace](https://aws.amazon.com/marketplace)
+
+이곳을 통해 PostgreSQL 이 설치된 EC2인스턴스를 바로 생성하고 사용할 수 있습니다. 
+
+위의 링크를 통해 "PostgreSQL 9.6"을 검색해보면 총 3개의 결과가 나옵니다. 이 중에서 첫번째 "PostgreSQL 9.6"를 선택합니다. 
+
+aws-101.png
+AWS MarketPlace 검색결과
+
+
+
+선택한 이미지의 상세 설명이 나옵니다. 주의할 점은 오른쪽 중간에 보이는 사용 비용입니다.
+이미지 종류에 따라 EC2비용에 라이선스 비용이 추가되는 경우가 있으며, 리젼에 따라 부과되는 요금이 차이가 발생할 수 있으니 반드시 확인하고 난 후에 "Continue" 를 클릭합니다. 
+
+aws-102.png
+이미지 상세설명
+
+
+
+
+
 
 1. AWS RDS의 PostgreSQL
 
