@@ -138,7 +138,22 @@ aws-019.png
 
 aws-020.png
 
-이제부터는
+이제부터는 일반적인 리눅스에서 설치하는 방법과 동일하게진행하면 됩니다. 
+
+PostgreSQL 설치를 위해 추가한 50GB의 디스크를 마운트 합니다. 
+
+디스크를 포맷해줍니다. 
+mkfs.ext4 /dev/sdb
+
+적당한 디렉토리를 생성하고 마운트 해줍니다. 
+sudo mkdir /db
+sudo mount /dev/sdb /db
+
+PostgreSQL 설치를 위해 디렉토리를 생성합니다. 
+sudo mkdir /db/pgsql
+cd /db/pgsql
+
+이제 이곳에 최신 버전을 다운로드 받고 설치하면 됩니다. 
 
 1. AWS MarketPlace를 이용한 설치
 
