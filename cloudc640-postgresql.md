@@ -187,14 +187,12 @@ cd /db/pgsql
 
 이곳을 통해 PostgreSQL 이 설치된 EC2인스턴스를 바로 생성하고 사용할 수 있습니다.
 
-위의 링크를 통해 "PostgreSQL 9.6"을 검색해보면 총 3개의 결과가 나옵니다. 
+위의 링크를 통해 "PostgreSQL 9.6"을 검색해보면 총 3개의 결과가 나옵니다.
 
 aws-101.png
 
 ![](/assets/aws-101.png)  
 AWS MarketPlace 검색결과
-
-
 
 이 중에서 첫번째 "PostgreSQL 9.6"를 선택합니다.
 
@@ -203,12 +201,28 @@ aws-102.png
 ![](/assets/aws-102.png)  
 이미지 상세설명
 
-선택한 이미지의 상세 설명이 나옵니다. 
+선택한 이미지의 상세 설명이 나옵니다.
 
-오른쪽 중간쯤에 보면 "For Region"  항목에서 Region을 선택할 수 있습니다. 
+오른쪽 중간쯤에 보면 "For Region"  항목에서 Region을 선택할 수 있습니다.
 
 주의할 점은 오른쪽 중간에 보이는 사용 비용입니다. Default 값은 "US East \(N. Virginia\)" 이므로 "Asis Pacific \(Seoul\)"로 변경해줍니다.  
 또한 이미지 종류에 따라 EC2비용에 라이선스 비용이 추가되는 경우가 있으며, 인스턴스 타입과 리젼에 따라 부과되는 요금에 차이가 발생하오니 반드시 확인하고 난 후에 "Continue" 를 클릭합니다.
+
+
+
+aws-103.png
+
+![](/assets/aws-103.png)
+
+상단에 보면 "1-Click Launch / Manual Launch / Service Catalog" 중
+
+왼쪽의 화면 내용들을 각 항목별로 본인의 환경에 맞게 선택을 한다. 당연한 말이지만, Subnet 을 Private으로 선택하게되면 생성되는 인스턴스에 Public IP 가 할당되지 않게 되며, 본인 PC 에서 생성된 DB에 접근할 수 없게 된다. 이를 주의하여 생성한다.
+
+
+
+
+
+
 
 
 
@@ -222,7 +236,11 @@ aws-102.png
 
 3. AWS CloudWatch를 이용한 모니터링
 
+
+
 ---
+
+
 
 \#Google Cloud Platform\(GCP\)에서의 PostgreSQL
 
@@ -232,7 +250,21 @@ aws-102.png
 
 3. Stackdriver를 이용한 모니터링
 
+
+
 ---
 
+
+
 \#Microsoft Azure
+
+1. IaaS 에 설치
+2. AzureDBPostgres 설치
+3. 모니터링
+
+
+
+---
+
+
 
