@@ -94,15 +94,11 @@ aws-011.png
 
 여기까지 잘 진행되었다면 이와 같은 화면을 만날 수 있습니다. 인스턴스 ID 를 클릭하면 현재 생성되고 있는 인스턴스의 상태를 보실 수 있습니다.
 
-
-
 aws-012.png
 
 ![](/assets/aws-012.png)
 
 Status Checks의 항목이 “Initializing”에서 “2/2 checks passed” 로 바뀌면 인스턴스 생성이 완료되어 서비스 준비가 완료된 상태입니다. 인스턴스를 클릭하면 화면 아래에 여러 정보가 나옵니다.
-
-
 
 aws-013.png
 
@@ -110,19 +106,13 @@ aws-013.png
 
 이제 Putty를 이용하여 생성한 인스턴스에 접속하기 위해 “Public DNS \(IPv4\)” 를 확인합니다. “IPv4 Public IP”를 이용해서 접속할 수도 있습니다.
 
-
-
-이제부터 설명하는 Putty 접속을 위한 내용은 PuTTY를 사용하여 Windows에서 Linux 인스턴스에 연결 에서 더 자세한 내용을 확인할 수 있습니다. \( [http://docs.aws.amazon.com/ko\_kr/AWSEC2/latest/UserGuide/putty.html\](http://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html%29\) \)
-
-
+이제부터 설명하는 Putty 접속을 위한 내용은 PuTTY를 사용하여 Windows에서 Linux 인스턴스에 연결 에서 더 자세한 내용을 확인할 수 있습니다. \( [http://docs.aws.amazon.com/ko\_kr/AWSEC2/latest/UserGuide/putty.html\](http://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html%29%29 \)
 
 aws-014.png
 
 ![](/assets/aws-014.png)
 
 Putty 는 AWS의 PEM Key를 그대로 사용할 수 없기에 puttygen 프로그램을 이용하여 Putty에서 사용할 수 있는 ppk 파일로 변환해줘야 합니다. puttygen을 실행하고 RSA를 선택합니다.
-
-
 
 aws-015.png
 
@@ -132,15 +122,11 @@ aws-015.png
 
 팝업창의 내용을 보면 “Save private key” 하라고 나옵니다. 확인을 클릭합니다.
 
-
-
 aws-016.png
 
 ![](/assets/aws-016.png)
 
 “Save private key” 를 클릭하여 ppk 파일로 저장합니다.
-
-
 
 aws-017.png
 
@@ -148,15 +134,11 @@ aws-017.png
 
 Putty를 열어서 Connection &gt; SSH &gt; Auth에 AWS 접속을 위해 위에서 저장한 ppk 파일을 등록해줍니다.
 
-
-
 aws-018.png
 
 ![](/assets/aws-018.png)
 
 Session &gt;  \[Host Name\] 상자에 user\_name@public\_dns\_name을 입력합니다.
-
-
 
 aws-019.png
 
@@ -166,15 +148,9 @@ aws-019.png
 
 “예\(Y\)”를 클릭하면 인스턴스로 접속이 됩니다.
 
-
-
 aws-020.png
 
 ![](/assets/aws-020.png)
-
-
-
-
 
 이제부터는 일반적인 리눅스에서 설치하는 방법과 동일하게진행하면 됩니다.
 
@@ -202,10 +178,6 @@ cd /db/pgsql
 
 이제 이곳에 최신 버전을 다운로드 받고 설치하면 됩니다.
 
-
-
-
-
 ---
 
 1. AWS MarketPlace를 이용한 설치
@@ -215,16 +187,32 @@ cd /db/pgsql
 
 이곳을 통해 PostgreSQL 이 설치된 EC2인스턴스를 바로 생성하고 사용할 수 있습니다.
 
-위의 링크를 통해 "PostgreSQL 9.6"을 검색해보면 총 3개의 결과가 나옵니다. 이 중에서 첫번째 "PostgreSQL 9.6"를 선택합니다.
+위의 링크를 통해 "PostgreSQL 9.6"을 검색해보면 총 3개의 결과가 나옵니다. 
 
-aws-101.png  
+aws-101.png
+
+![](/assets/aws-101.png)  
 AWS MarketPlace 검색결과
 
-선택한 이미지의 상세 설명이 나옵니다. 주의할 점은 오른쪽 중간에 보이는 사용 비용입니다.  
-이미지 종류에 따라 EC2비용에 라이선스 비용이 추가되는 경우가 있으며, 리젼에 따라 부과되는 요금이 차이가 발생할 수 있으니 반드시 확인하고 난 후에 "Continue" 를 클릭합니다.
 
-aws-102.png  
+
+이 중에서 첫번째 "PostgreSQL 9.6"를 선택합니다.
+
+aws-102.png
+
+![](/assets/aws-102.png)  
 이미지 상세설명
+
+선택한 이미지의 상세 설명이 나옵니다. 
+
+오른쪽 중간쯤에 보면 "For Region"  항목에서 Region을 선택할 수 있습니다. 
+
+주의할 점은 오른쪽 중간에 보이는 사용 비용입니다. Default 값은 "US East \(N. Virginia\)" 이므로 "Asis Pacific \(Seoul\)"로 변경해줍니다.  
+또한 이미지 종류에 따라 EC2비용에 라이선스 비용이 추가되는 경우가 있으며, 인스턴스 타입과 리젼에 따라 부과되는 요금에 차이가 발생하오니 반드시 확인하고 난 후에 "Continue" 를 클릭합니다.
+
+
+
+
 
 ---
 
