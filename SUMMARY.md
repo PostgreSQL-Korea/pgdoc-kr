@@ -9,4 +9,5 @@
 * [XML](xml.md)
 * [Cloud TEST](cloud_test.md)
 * [Cloud와 PostgreSQL](cloudc640-postgresql.md)
+* [PostgreSQL 기본 개념](postgresqlbasic.md)
 
