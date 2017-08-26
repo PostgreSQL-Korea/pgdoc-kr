@@ -25,6 +25,17 @@ CREATE TABLE user_info (
 
 가. CHECK 제약 조건
 
+*  컬럼의 값이 Boolean\(진리값\) 표현식을 만족해야 함.
+* 제약 조건에 개별 이름을 부여할 수 있으며 CONSTRAINT 뒤에 식별자, 그 뒤에 제약 조건을 정의
+
+```
+CREATE TABLE user_info (
+    user_id       varchar(32)     not null,
+    age           smallint        CHECK(age > 0),
+    
+);
+```
+
 나. NOT NULL 제약 조건
 
 다. UNIQUE 제약 조건
