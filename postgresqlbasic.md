@@ -16,8 +16,18 @@
 CREATE TABLE user_info (
     user_id       varchar(32)    not null,
     sso_use_yn    char(1)        default 'N'
-);          
+);
 ```
+
+3\) 제약조건
+
+
+
+
+
+
+
+
 
 
 
