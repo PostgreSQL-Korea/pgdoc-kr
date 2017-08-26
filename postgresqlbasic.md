@@ -12,7 +12,7 @@
 
 컬럼에는 기본값을 할당할 수 있으며 명식적으로 선언되지 않으면 null 을 가짐
 
-예\) CREATE TABLE employee \(
+예\) CREATE TABLE employee \(
 
 employee\_id integer,
 
@@ -20,7 +20,7 @@ name text,
 
 age numeric DEFAULT 0.0
 
-\)
+\)
 
 ### 3.1.2 트리거
 
