@@ -29,8 +29,6 @@ CREATE TABLE user_info (
 
 
 
-
-
 ### 3.1.2 트리거
 
 ### 3.1.3 Rule
