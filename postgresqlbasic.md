@@ -21,7 +21,7 @@ CREATE TABLE user_info (
 
 3\) 제약조건
 
-
+테이블 및 컬럼에 데이터 저장시 
 
 
 
