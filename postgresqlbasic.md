@@ -52,7 +52,19 @@ CREATE TABLE user_info (
 * 컬럼 또는 컬럼 그룹에 자동으로 고유 btree 인덱스가 생성됨
 * null 값은 중복 저장 허용
 
+```
+* 컬럼에 제약 조건을 사용하는 경우
+CREATE TABLE user_info (
+    user_id varchar(32) UNIQUE
+);
 
+* 테이블에 제약 조건을 사용하는 경우
+CREATE TABLE user_info (
+    user_id     varchar(32),
+    user_name   varchar(60),
+    UNIQUE(user_id)
+); 
+```
 
 라. 기본 키
 
