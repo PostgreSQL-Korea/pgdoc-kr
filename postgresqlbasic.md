@@ -127,6 +127,8 @@ CREATE TABLE board_comment (
 
 사. 제외 제약 조건
 
+* 생략
+
 ### 3.1.2 트리거
 
 ### 3.1.3 Rule
