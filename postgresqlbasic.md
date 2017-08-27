@@ -32,7 +32,7 @@ CREATE TABLE user_info (
 CREATE TABLE user_info (
     user_id       varchar(32)     not null,
     age           smallint        CHECK(age > 0),
-
+    height        smallint        CONSTRAINT    positive_height    CHECK (height > 0)
 );
 ```
 
