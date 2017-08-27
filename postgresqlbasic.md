@@ -129,6 +129,10 @@ CREATE TABLE board_comment (
 
 * 생략
 
+4\) 시스템 컬럼
+
+
+
 ### 3.1.2 트리거
 
 ### 3.1.3 Rule
