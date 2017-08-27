@@ -82,12 +82,15 @@ CREATE TABLE user_info (
 
 ```
 CREATE TABLE user_info (
-    user_id          varchar(32),
+    user_id                  varchar(32),
     PRIMARY KEY(user_id)
 );
 ```
 
 바. 외래 키
+
+* 두 테이블 간의 관계를 설정하고 강제 적용하여 외래 키 테이블에 저장 되는 데이터를 제어 하는데 사용 됨
+* 한 테이블이 기본 키 값을
 
 사. 제외 제약 조건
 
