@@ -76,6 +76,16 @@ CREATE TABLE user_info (
 
 라. 기본 키
 
+* PRIMARY KEY 제약 조건은 UNIQUE 제약 조건과 NOT NULL 제약 조건의 조합
+* 테이블은 보통 1개의 기본키를 가질 수 있음
+
+```
+CREATE TABLE user_info (
+    user_id          varchar(32),
+    PRIMARY KEY(user_id)
+);
+```
+
 바. 외래 키
 
 사. 제외 제약 조건
