@@ -106,7 +106,8 @@ CREATE TABLE board_comment (
     board_comment_id    bigint,
     board_id            bigint,
     contents            text            NOT NULL,
-    PRIMARY KEY(board_comment_id)
+    .... 생략 ....
+    FOREIGN KEY(board_id) REFERENCES board(board_id)
 );
 ```
 
