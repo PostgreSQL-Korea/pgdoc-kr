@@ -109,6 +109,20 @@ CREATE TABLE board_comment (
     .... 생략 ....
     FOREIGN KEY(board_id) REFERENCES board(board_id)
 );
+
+* RESTICT 옵션
+CREATE TABLE board_comment (
+    board_comment_id    bigint,
+    board_id            bigint    REFERENCES    board ON DELETE RESTRICT
+    ... 생략...
+);
+
+* CASCADE 옵션
+CREATE TABLE board_comment (
+    board_comment_id    bigint,
+    board_id            bigint    REFERENCES    board ON DELETE CASCADE
+    ... 생략...
+);
 ```
 
 사. 제외 제약 조건
