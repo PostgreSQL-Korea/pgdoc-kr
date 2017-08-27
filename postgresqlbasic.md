@@ -91,7 +91,25 @@ CREATE TABLE user_info (
 
 * 두 테이블 간의 관계를 설정하고 강제 적용하여 외래 키 테이블에 저장 되는 데이터를 제어 하는데 사용 됨
 * 한 테이블이 기본 키 값을 가지고 있는 컬럼을 다른 테이블의 컬럼이 참조할 때 두 테이블 간의 관계가 생성되고 이때 두번째 테이블에 추가되는 컬럼을 외래키라고 함.
-* 
+* 1개 이상의 외래 키를 가질 수 있으며 참조되는 컬럼의 수 및 타입은 일치해야 함
+* 제한 및 케스케이딩 삭제는 두가지 가장 일반적인 옵션이며 RESTICT 는 참조되는 행의 삭제를 금지하며 CASCADE는 참조되는 행이 삭제될 경우 참조하는 행도 자동으로 삭제되는지를 지정함
+
+```
+* 게시물을 저장하는 board 와 게시물 comment 저장하는 board_comment 테이블
+CREATE TABLE board (
+    board_id             bigint,
+    title                varchar(256)    NOT NULL,
+    PRIMARY KEY(board_id)
+);
+
+CREATE TABLE board_comment (
+    board_comment_id    bigint,
+    board_id            bigint,
+    contents            text            NOT NULL,
+    PRIMARY KEY(board_comment_id)
+);
+```
+
 사. 제외 제약 조건
 
 ### 3.1.2 트리거
