@@ -63,7 +63,15 @@ CREATE TABLE user_info (
     user_id     varchar(32),
     user_name   varchar(60),
     UNIQUE(user_id)
-); 
+);
+
+* 컬럼 그룹에 제약 조건을 사용하는 경우
+CREATE TABLE user_info (
+    user_id          varchar(32),
+    user_name        varchar(60),
+    social_number    int,
+    UNIQUE(user_name, social_number)
+);
 ```
 
 라. 기본 키
