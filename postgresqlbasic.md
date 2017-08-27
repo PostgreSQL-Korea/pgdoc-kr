@@ -38,6 +38,14 @@ CREATE TABLE user_info (
 
 나. NOT NULL 제약 조건
 
+* 컬럼 값이 null 값이 아님을 체크
+
+```
+CREATE TABLE user_info (
+    user_id varchar(32) not null
+);
+```
+
 다. UNIQUE 제약 조건
 
 라. 기본 키
