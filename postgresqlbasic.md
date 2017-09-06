@@ -136,6 +136,15 @@ CREATE TABLE board_comment (
 
 5\) 테이블 수정
 
+* 처음 생성한 테이블을 시스템 운영 혹은 업무적인 요구 사항에 의해 컬럼을 추가/삭제, 이름, 데이터 타입, 제약 조건등을 추가/삭제 하는 것을 말함
+
+가. 컬럼 추가
+
+```
+새 컬럼을 추가하는 명령어
+ALTER TABLE user_info ADD COLUMN hobby varchar(64);
+```
+
 
 
 ### 3.1.2 트리거
