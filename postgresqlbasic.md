@@ -145,6 +145,25 @@ CREATE TABLE board_comment (
 ALTER TABLE user_info ADD COLUMN hobby varchar(64);
 ```
 
+나. 컬럼 삭제
+
+* 필요 없는 컬럼을 삭제할 수 있으며 컬럼에 데이터가 있거나 없거나 삭제됨
+* 컬럼의 제약 조건 역시 삭제되나 다른 테이블의 외래 키 제약 조건이 참조하는 경우 자동으로 삭제되지 않으며 CASCADE를 이용하여 삭제할 수 있음
+
+```
+ALTER TABLE user_info DROP COLULM hobby [CASCADE : 강제 삭제 옵션 ];
+```
+
+다. 제약 조건 추가
+
+```
+제약 조건을 추가하기 위해 테이블 제약 조건이 사용됨
+ALTER TABLE user_info ADD CONSTRAINT uk_email UNIQUE (email); // uk_email은 제약조건 이름
+ALTER TABLE user_info ADD FOREIGN KEY (user_group_id) REFERENCES user_group; // user_group 의 user_group_id를 참조
+```
+
+
+
 
 
 ### 3.1.2 트리거
