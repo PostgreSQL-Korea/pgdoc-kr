@@ -182,8 +182,6 @@ ALTER TABLE user_info ALTER COLUMN sso_use_yn SET DEFAULT 'N';
 * 기존에 들어 있는 데이터를 암시적 형변환에 의해 새 타입으로 변환할 수 있는 경우에만 성공함.
   복잡한 변환이 필요한 경우에는 USING 절을 추가하여 변경할 수 있음.
 
-
-
 ### 3.1.2 트리거
 
 ### 3.1.3 Rule
