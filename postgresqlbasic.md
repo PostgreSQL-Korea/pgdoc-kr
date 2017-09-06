@@ -162,7 +162,25 @@ ALTER TABLE user_info ADD CONSTRAINT uk_email UNIQUE (email); // uk_email은 제
 ALTER TABLE user_info ADD FOREIGN KEY (user_group_id) REFERENCES user_group; // user_group 의 user_group_id를 참조
 ```
 
+라. 제약 조건 삭제
 
+```
+제약 조건을 삭제 하려면 이름을 알아야 함
+ALTER TABLE user_info DROP CONSTRAINT uk_email; // uk_email은 제약조건 이름
+```
+
+마. 컬럼 기본값 변경
+
+* 기존에 들어 있는 데이터에는 영향을 미치지 않으며, 기본값 변경 적용 이후의 INSERT 명령에 대한 기본값만 변경함
+
+```
+ALTER TABLE user_info ALTER COLUMN sso_use_yn SET DEFAULT 'N';
+```
+
+바. 컬럼 데이터 타입 변경
+
+* 기존에 들어 있는 데이터를 암시적 형변환에 의해 새 타입으로 변환할 수 있는 경우에만 성공함.
+  복잡한 변환이 필요한 경우에는 USING 절을 추가하여 변경할 수 있음.
 
 
 
