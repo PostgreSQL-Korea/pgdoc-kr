@@ -228,6 +228,16 @@ ALTER TABLE board_file RENAME TO board_attach_file;
 
 데이터의 무결성, 테이블의 변경정보 감시
 
+2\) 생성
+
+CREATE TRIGGER 트리거이름 \[BEFORE\|AFTER\|INSTEAD OF\] 이벤트명 ON 테이블명
+
+\[
+
+--
+
+\]
+
 ### 3.1.3 Rule
 
 ## 3.2 PostgreSQL의 데이터 타입
