@@ -222,6 +222,10 @@ ALTER TABLE board_file RENAME TO board_attach_file;
 
 ### 3.1.2 트리거
 
+1\) 정의
+
+ 지정된 테이블에 INSERT, UPDATE, DELETE이 실행되는 시점 전 또는 후에 자동 실행되는 PL/SQL
+
 ### 3.1.3 Rule
 
 ## 3.2 PostgreSQL의 데이터 타입
