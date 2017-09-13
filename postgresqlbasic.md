@@ -224,7 +224,9 @@ ALTER TABLE board_file RENAME TO board_attach_file;
 
 1\) 정의
 
- 지정된 테이블에 INSERT, UPDATE, DELETE이 실행되는 시점 전 또는 후에 자동 실행되는 PL/SQL
+지정된 테이블에 INSERT, UPDATE, DELETE이 실행되는 시점 전 또는 후에 자동 실행되는 PL/SQL.
+
+데이터의 무결성, 테이블의 변경정보 감시
 
 ### 3.1.3 Rule
 
