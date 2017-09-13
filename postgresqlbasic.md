@@ -189,14 +189,12 @@ ALTER TABLE user_info ALTER COLUMN sso_use_yn SET DEFAULT 'N';
 ALTER TABLE user_info RENAME COLUMN phone TO mobile_phone;
 ```
 
-아. 테이블 이름 변경  
-ㅇㅇㅇㅇㅇ
+아. 테이블 이름 변경
 
-
-
-
-
-
+```
+테이블명을 변경
+ALTER TABLE board_file RENAME TO board_attach_file;
+```
 
 ### 
 
