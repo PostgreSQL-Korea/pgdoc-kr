@@ -8,7 +8,29 @@
 
 관계형 데이터 베이스를 구성하는 기본 데이터 구조로서 행과 컬럼\(열\)의 구조를 가지는 저장공간이며 각 컬럼은 데이터 타입을 가지고 있다.
 
-2\) 기본값
+2\) 특징
+
+* 테이블 이름, 모든 컬럼의 이름 및 타입을 지정함으로 생성
+* 컬럼 타입은 표준 SQL 타입 int, smallint, real, double, precision, char\(N\), varchar\(N\), date, time, timestamp, interval, 일반 유틸리티의 기타 타입, 여러가지 기하학적 타입 집합을 지원.
+* 테이블에서 데이터를 검색하기 위해 질의\(SQL\)을 사용함
+* 데이터 검색을 위한 SELECT, 등록을 위한 INSERT, 수정을 위한 UPDATE, 삭제를 위한 DELETE 명령을 사용함
+* 복수의 테이블을 한 번에 액세스 하거나 동일 테이블을 엑세스 하는 방법으로 테이블간 조인을 지원함
+* 집계 함수 count, sum, avg, max, min 등을 지원함
+
+3\) 생성
+
+```
+CREATE TABLE user_info (
+    user_id        varchar(30)
+);
+
+user_info : 테이블명
+user_id : 컬럼
+varchar : 데이터 타입
+30 : 사이즈
+```
+
+4\) 기본값
 
 데이터 값을 입력하지 않는 경우 자동으로 입력되는 기본값을 말한다.
 
@@ -19,7 +41,7 @@ CREATE TABLE user_info (
 );
 ```
 
-3\) 제약조건
+5\) 제약조건
 
 입력하는 데이터에 대한 제약, 즉 데이터 무결성을 지키기 위한 조건을 의미한다.
 
@@ -129,12 +151,12 @@ CREATE TABLE board_comment (
 
 * 생략\( 잘 모르겠음... .베끼기는 싫고\)
 
-4\) 시스템 컬럼
+6\) 시스템 컬럼
 
 * 모든 테이블에는 시스템에서 암시적으로 정의하는 몇 개의 시스템 컬럼이 있으며 이러한 이름은 사용자 정의 컬럼으로 사용할 수 없음. 존재 한다는 사실 정도만 알면 될거 같음
 * oid\(행의 개체 식별자\), tableoid, xmin, cmin, xmax, cmax, ctid 등이 있음
 
-5\) 테이블 수정
+7\) 테이블 수정
 
 * 처음 생성한 테이블을 시스템 운영 혹은 업무적인 요구 사항에 의해 컬럼을 추가/삭제, 이름, 데이터 타입, 제약 조건등을 추가/삭제 하는 것을 말함
 
@@ -182,11 +204,150 @@ ALTER TABLE user_info ALTER COLUMN sso_use_yn SET DEFAULT 'N';
 * 기존에 들어 있는 데이터를 암시적 형변환에 의해 새 타입으로 변환할 수 있는 경우에만 성공함.
   복잡한 변환이 필요한 경우에는 USING 절을 추가하여 변경할 수 있음.
 
+사. 컬럼 이름 변경
 
+```
+테이블의 컬럼 이름을 변경
+ALTER TABLE user_info RENAME COLUMN phone TO mobile_phone;
+```
+
+아. 테이블 이름 변경
+
+```
+테이블명을 변경
+ALTER TABLE board_file RENAME TO board_attach_file;
+```
+
+### 
 
 ### 3.1.2 트리거
 
+1\) 정의
+
+* 테이블과 관련된 이벤트가 발생할 때마다 자동으로 호출되는 함수.
+* INSERT, UPDATE, DELETE 이 실행되는 시점 전 또는 후 또는 TRUNCATE 시 실행 됨.
+* 테이블에 바인딩하는 특별한 사용자 정의 함수
+* 새 트리거를 생성하는 경우 트리거 함수를 먼저 정의 한 후, 트리거 함수를 테이블에 바인딩 함
+* 트리거와 사용자 정의 함수의 차이점은 이벤트가 발생할때마다 트리거가 자동으로 호출 된다는 점.
+
+2\) 유형
+
+Row and Statement Level 2가지 유형의 트리거를 제공하며, 이 두가지 유형의 차이점은 트리거가 호출된 횟수와 시간
+
+Row Level 트리거는 10 Row 에 영향을 주는 UPDATE 문을 실행하면 Row Level 트리거가 10회 호출되지만 Statement Level
+
+트리거는 한번만 호출됨
+
+3\) 특징
+
+이벤트 전 또는 후에 호출됨. 이벤트 이전에 호출되면 현재 행에 대한 작업을 건너 띄거나 업데이터 가능.
+
+이벤트 후에 호출 된 경우는 모든 변경 사항을 트리거에서 사용할 수 있음
+
+4\) 생성
+
+* CREATE FUNCTION 문을 사용해서  trigger function을 생성
+
+```
+CREATE FUNCTION trigger_function() RETURN trigger AS
+```
+
+* CREATE TRIGGER 문을 사용해서 trigger function을 테이블에 바인딩
+
+```
+CREATE TRIGGER trigger_name {BEFORE | AFTER | INSTEAD OF} {event [OR ...]}
+   ON table_name
+   [FOR [EACH] {ROW | STATEMENT}]
+   EXECUTE PROCEDURE trigger_function
+```
+
+가. 로깅을 하는 access\_log 테이블을 상속하는 access\_log\_2017, access\_log\_2018 이 있다고 가정.
+
+```
+* access_log 는 부모 테이블, access_log_2017, access_log_2018 은 파티션
+create table access_log(
+    access_log_id                      bigint                         not null,
+    user_id                            varchar(32)                    not null,
+    user_name                          varchar(64)                    not null,
+    insert_date                        timestamp without time zone    default now(),
+    constraint access_log_pk primary key (access_log_id)    
+);
+create table access_log_2017 (
+    check ( insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and insert_date < to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') )
+) inherits (access_log);
+create table access_log_2018 (
+    check ( insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') )
+) inherits (access_log);
+```
+
+나. 데이터가 들어올때마다 데이터를 등록일을 체크해서 해당 년도 테이블에 insert 하는 function을 생성
+
+```
+CREATE OR REPLACE FUNCTION access_log_insert()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF( NEW.insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and NEW.insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') ) THEN
+        insert into access_log_2017 values (NEW.*);
+    ELSIF( NEW.insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and NEW.insert_date <= to_timestamp('20190101000000000000', 'YYYYMMDDHH24MISSUS') ) THEN
+        insert into access_log_2018 values (NEW.*);
+    ELSE
+        RAISE EXCEPTION 'Error in access_log_insert() : data out of range';
+    END IF;
+    RETURN NULL;
+END;
+$$
+LANGUAGE PLPGSQL;
+```
+
+다. trigger function을 테이블에 바인딩
+
+```
+create trigger access_log_insert_trigger
+    before insert on access_log
+    for each row execute procedure access_log_insert();
+```
+
+5\) 수정
+
+ALTER TRIGGER 문을 이용해서 수정
+
+```
+ALTER TRIGGER trigger_name ON table_name RENAME TO new_name;
+```
+
+6\) 삭제
+
+DROP TRIGGER를 이용하여 삭제
+
+```
+DROP TRIGGER [IF EXISTS] trigger_name ON table_name;
+```
+
 ### 3.1.3 Rule
+
+CREATE RULE is a PostgreSQL language extension, as is the entire query rewrite system.
+
+테이블이나 뷰에 적용되는 새 규칙을 적용 하거나 기존 규칙을 대체
+
+테이블에서 INSERT, UPDATE, DELETE 문 수행 시 실행될 작업을 정의.
+
+일반적으로 규칙은 테이블에 SQL 문이 실행될 때 추가 명령을 실행하게 됨.
+
+INSTEAD 규칙은 주어진 명령을 다른 명령으로 대체하거나 명령이 실행되지 않도록 명령 실행이 시작되기 전에 수행
+
+각행에 독립적으로 실행되는 작업을 원한다면 트리거를 권장.
+
+------------------ 작성 중 ----------
+
+룰 시스템 \(보다 정확하게 말하면 쿼리 재 작성 룰 시스템\)은 저장 프로 시저 및 트리거와 완전히 다릅니다. 규칙을 고려하여 쿼리를 수정 한 다음 수정 된 쿼리를 계획 및 실행을 위해 쿼리 계획자에게 전달합니다. 이는 매우 강력하며 쿼리 언어 프로 시저, 뷰 및 버전과 같은 많은 요소에 사용할 수 있습니다. 이 규칙 시스템의 이론적 토대와 힘은 데이터베이스 시스템의 제작 규칙을 사용하여 데이터베이스 시스템의 규칙, 절차, 캐싱 및 뷰 및 버전 모델링을위한 통합 프레임 워크에서도 논의됩니다.
+
+
+
+38장을......................... 번역하고 작성해야 함.
 
 ## 3.2 PostgreSQL의 데이터 타입
 
