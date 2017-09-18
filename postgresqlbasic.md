@@ -247,21 +247,31 @@ Row Level 트리거는 10 Row 에 영향을 주는 UPDATE 문을 실행하면 Ro
 4\) 생성
 
 * CREATE FUNCTION 문을 사용해서  trigger function을 생성
+
+```
+CREATE FUNCTION trigger_function() RETURN trigger AS
+```
+
 * CREATE TRIGGER 문을 사용해서 trigger function을 테이블에 바인딩
+
+```
+CREATE TRIGGER trigger_name {BEFORE | AFTER | INSTEAD OF} {event [OR ...]}
+   ON table_name
+   [FOR [EACH] {ROW | STATEMENT}]
+   EXECUTE PROCEDURE trigger_function
+```
 
 가. 로깅을 하는 access\_log 테이블이 있다고 가정해 보자.
 
 ```
 create table access_log(
-	access_log_id					bigint 				not null,
-	user_id						varchar(32)	 		not null,
-	user_name					varchar(64)			not null,
-	insert_date					timestamp without time zone	default now(),
-	constraint access_log_pk primary key (access_log_id)	
+    access_log_id                      bigint                         not null,
+    user_id                            varchar(32)                    not null,
+    user_name                          varchar(64)                    not null,
+    insert_date                        timestamp without time zone    default now(),
+    constraint access_log_pk primary key (access_log_id)    
 );
 ```
-
-
 
 CREATE TRIGGER 트리거이름 \[BEFORE\|AFTER\|INSTEAD OF\] 이벤트명 ON 테이블명
 
