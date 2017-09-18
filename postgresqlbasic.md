@@ -244,13 +244,12 @@ Row Level 트리거는 10 Row 에 영향을 주는 UPDATE 문을 실행하면 Ro
 
 이벤트 후에 호출 된 경우는 모든 변경 사항을 트리거에서 사용할 수 있음
 
+4\) 생성
+
+* CREATE FUNCTION 문을 사용해서  trigger function을 생성
+* CREATE TRIGGER 문을 사용해서 trigger function을 테이블에 바인딩
 
 
-
-
-
-
-2\) 생성
 
 CREATE TRIGGER 트리거이름 \[BEFORE\|AFTER\|INSTEAD OF\] 이벤트명 ON 테이블명
 
