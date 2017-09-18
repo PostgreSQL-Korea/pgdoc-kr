@@ -224,7 +224,27 @@ ALTER TABLE board_file RENAME TO board_attach_file;
 
 1\) 정의
 
-지정된 테이블에 INSERT, UPDATE, DELETE이 실행되는 시점 전 또는 후에 자동 실행되는 PL/SQL.
+* 테이블과 관련된 이벤트가 발생할 때마다 자동으로 호출되는 함수.
+* INSERT, UPDATE, DELETE 이 실행되는 시점 전 또는 후 또는 TRUNCATE 시 실행 됨.
+* 테이블에 바인딩하는 특별한 사용자 정의 함수
+* 새 트리거를 생성하는 경우 트리거 함수를 먼저 정의 한 후, 트리거 함수를 테이블에 바인딩 함
+* 트리거와 사용자 정의 함수의 차이점은 이벤트가 발생할때마다 트리거가 자동으로 호출 된다는 점.
+
+2\) 유형
+
+Row and Statement Level 2가지 유형의 트리거를 제공하며, 이 두가지 유형의 차이점은 트리거가 호출된 횟수와 시간
+
+Row Level 트리거는 10 Row 에 영향을 주는 UPDATE 문을 실행하면 Row Level 트리거가 10회 호출되지만 Statement Level
+
+트리거는 한번만 호출됨
+
+
+
+
+
+
+
+
 
 데이터의 무결성, 테이블의 변경정보 감시
 
