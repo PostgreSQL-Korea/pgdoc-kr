@@ -261,9 +261,10 @@ CREATE TRIGGER trigger_name {BEFORE | AFTER | INSTEAD OF} {event [OR ...]}
    EXECUTE PROCEDURE trigger_function
 ```
 
-가. 로깅을 하는 access\_log 테이블이 있다고 가정해 보자.
+가. 로깅을 하는 access\_log 테이블을 상속하는 access\_log\_2017, access\_log\_2018 이 있다고 가정. 
 
 ```
+* access_log 는 부모 테이블, access_log_2017, access_log_2018 은 파티션
 create table access_log(
     access_log_id                      bigint                         not null,
     user_id                            varchar(32)                    not null,
@@ -271,22 +272,28 @@ create table access_log(
     insert_date                        timestamp without time zone    default now(),
     constraint access_log_pk primary key (access_log_id)    
 );
+create table access_log_2017 (
+	check ( insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
+	    and insert_date < to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') )
+) inherits (access_log);
+create table access_log_2018 (
+	check ( insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
+	    and insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') )
+) inherits (access_log);
 ```
 
-CREATE TRIGGER 트리거이름 \[BEFORE\|AFTER\|INSTEAD OF\] 이벤트명 ON 테이블명
+나. 데이터가 들어올때마다 데이터를 등록일을 체크해서 해당 년도 테이블에 insert 하는 function을 생성
 
 ```
-drop trigger if exists access_log_insert_trigger on access_log;
-
 CREATE OR REPLACE FUNCTION access_log_insert()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF( NEW.insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') and NEW.insert_date <= to_timestamp('20171231235959999999', 'YYYYMMDDHH24MISSUS') ) THEN
+    IF( NEW.insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and NEW.insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') ) THEN
         insert into access_log_2017 values (NEW.*);
-    ELSIF( NEW.insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') and NEW.insert_date <= to_timestamp('20181231235959999999', 'YYYYMMDDHH24MISSUS') ) THEN
+    ELSIF( NEW.insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and NEW.insert_date <= to_timestamp('20190101000000000000', 'YYYYMMDDHH24MISSUS') ) THEN
         insert into access_log_2018 values (NEW.*);
-    ELSIF( NEW.insert_date >= to_timestamp('20310101000000000000', 'YYYYMMDDHH24MISSUS') and NEW.insert_date <= to_timestamp('20311231235959999999', 'YYYYMMDDHH24MISSUS') ) THEN
-        insert into access_log_2031 values (NEW.*);
     ELSE
         RAISE EXCEPTION 'Error in access_log_insert() : data out of range';
     END IF;
@@ -294,11 +301,41 @@ BEGIN
 END;
 $$
 LANGUAGE PLPGSQL;
+```
 
+다. trigger function을 테이블에 바인딩
+
+```
 create trigger access_log_insert_trigger
     before insert on access_log
     for each row execute procedure access_log_insert();
 ```
+
+5\) 수정
+
+ALTER TRIGGER 문을 이용해서 수정
+
+```
+ALTER TRIGGER trigger_name ON table_name RENAME TO new_name;
+```
+
+6\) 삭제
+
+DROP TRIGGER를 이용하여 삭제
+
+```
+DROP TRIGGER [IF EXISTS] trigger_name ON table_name;
+```
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------- 작성중 ----------------------------------------------------------------------------
 
 ### 3.1.3 Rule
 
