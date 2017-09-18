@@ -261,7 +261,7 @@ CREATE TRIGGER trigger_name {BEFORE | AFTER | INSTEAD OF} {event [OR ...]}
    EXECUTE PROCEDURE trigger_function
 ```
 
-가. 로깅을 하는 access\_log 테이블을 상속하는 access\_log\_2017, access\_log\_2018 이 있다고 가정. 
+가. 로깅을 하는 access\_log 테이블을 상속하는 access\_log\_2017, access\_log\_2018 이 있다고 가정.
 
 ```
 * access_log 는 부모 테이블, access_log_2017, access_log_2018 은 파티션
@@ -273,12 +273,12 @@ create table access_log(
     constraint access_log_pk primary key (access_log_id)    
 );
 create table access_log_2017 (
-	check ( insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
-	    and insert_date < to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') )
+    check ( insert_date >= to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and insert_date < to_timestamp('20170101000000000000', 'YYYYMMDDHH24MISSUS') )
 ) inherits (access_log);
 create table access_log_2018 (
-	check ( insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
-	    and insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') )
+    check ( insert_date >= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') 
+        and insert_date <= to_timestamp('20180101000000000000', 'YYYYMMDDHH24MISSUS') )
 ) inherits (access_log);
 ```
 
@@ -331,9 +331,7 @@ DROP TRIGGER [IF EXISTS] trigger_name ON table_name;
 
 
 
-
-
-
+------------------------------------------------------------------------
 
 ------------------------------------------------------------------------- 작성중 ----------------------------------------------------------------------------
 
