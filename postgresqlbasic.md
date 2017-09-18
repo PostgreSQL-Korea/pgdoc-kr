@@ -251,6 +251,20 @@ Row Level 트리거는 10 Row 에 영향을 주는 UPDATE 문을 실행하면 Ro
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TRIGGER 트리거이름 \[BEFORE\|AFTER\|INSTEAD OF\] 이벤트명 ON 테이블명
 
 ```
